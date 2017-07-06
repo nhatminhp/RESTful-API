@@ -46,7 +46,7 @@
         $query = mysqli_query($conn,$sql);
         $result = array();
         if ($query) {
-            while ($row = mysqli_fetch_array($query)) {
+            while ($row = mysqli_fetch_assoc($query)) {
                 $result[]=$row;
             }
         }
@@ -71,7 +71,7 @@
             echo json_encode($result);
             return $result;
         } else {
-            echo "NULL =))";
+            echo "There is no information of id = $id";
         }
     }
 
@@ -84,8 +84,9 @@
         $sql = "INSERT INTO staffs(name,age,phone)
                 VALUES('$name','$age','$phone')";
         echo $sql;
-        echo "</br>";
+        echo PHP_EOL;
         $query = mysqli_query($conn,$sql);
+        echo $query;
         if ($query) {
             echo "Successfully added.";
             return $query;
@@ -103,7 +104,7 @@
 
         $id = handle_url(); 
         if (!$id) {
-            echo "Failed to identify id.";
+            echo "Failed to identify id = $id";
             return;
         }
         $sql = "UPDATE staffs SET
@@ -112,13 +113,13 @@
                 phone = '$phone'
                 WHERE id = $id";
         echo $sql;
-        echo "</br>";
+        echo PHP_EOL;
         $query = mysqli_query($conn,$sql);
         if ($query) {
-            echo "Successfully edited.";
+            echo "Successfully edited profile (id = $id)";
             return $query; 
         } else { 
-            echo "Failed to edit."; 
+            echo "Failed to edit profile (id = $id)"; 
             return;
         }
     }
@@ -129,10 +130,10 @@
                 WHERE id = $id";
         $query = mysqli_query($conn,$sql);
         if ($query) {
-            echo "Successfully deleted.";
+            echo "Successfully deleted profile (id = $id)";
             return $query;
         } else {
-            echo "Failed to delete.";
+            echo "Failed to delete profile (id = $id)";
             return;
         }
     }
