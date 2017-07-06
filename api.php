@@ -1,6 +1,6 @@
 <?php
 /**
- * Created by Sublime Text.
+ * Created by Sublime Text
  * User: nhatminhp
  * Date: 30/3/17
  * Time: 9:12 AM
