@@ -36,8 +36,11 @@
 
     // export id from url
     function handle_url() {
-        $url = explode('/', $_GET['id']);
-        return $_GET['id'];
+        $url = explode('/', $_GET['controller']);
+        if ($url[0] == "staffs") {
+            return $url[1];
+        }
+
     }
 
     function get_all() {
@@ -166,28 +169,4 @@
             echo "This HTTP method is not supported.";
             break;
     }
-    /*// use method 'GET' to view all elements or only one
-    if (get_method() == 'GET') {
-        connectDB();
-        get_staff(handle_url());
-        disconnectDB();
-    } 
-    // use method 'PUT' to edit one element 
-    elseif (get_method() == 'PUT') {
-        connectDB();
-        edit_staff($_PUT['name'],$_PUT['age'],$_PUT['phone']);
-        disconnectDB();
-    }
-    // use method 'POST' to add one new element with +1 id
-    elseif (get_method() == 'POST') {
-        connectDB();
-        add_staff($_POST['name'],$_POST['age'],$_POST['phone']);
-        disconnectDB();
-    }
-    // use method 'DELETE' to delete one element
-    elseif (get_method() == 'DELETE') {
-        connectDB();
-        delete_staff(handle_url());
-        disconnectDB();
-    } */
 ?>
