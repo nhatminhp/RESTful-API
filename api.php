@@ -1,7 +1,7 @@
 <?php
 /**
- * Created by Sublime Text
- * User: nhatminhp
+ * Created by PhpStorm.
+ * User: nhatminh
  * Date: 30/3/17
  * Time: 9:12 AM
  */
@@ -137,7 +137,36 @@
             return;
         }
     }
-    // use method 'GET' to view all elements or only one
+    switch (get_method()) {
+        case 'GET':
+            connectDB();
+            get_staff(handle_url());
+            disconnectDB();
+            break;
+
+        case 'POST':
+            connectDB();
+            add_staff($_POST['name'],$_POST['age'],$_POST['phone']);
+            disconnectDB();        
+            break;
+
+        case 'PUT':
+            connectDB();
+            edit_staff($_PUT['name'],$_PUT['age'],$_PUT['phone']);
+            disconnectDB();
+            break;
+
+        case 'DELETE':
+            connectDB();
+            delete_staff(handle_url());
+            disconnectDB();
+            break;
+
+        default:
+            echo "This HTTP method is not supported.";
+            break;
+    }
+    /*// use method 'GET' to view all elements or only one
     if (get_method() == 'GET') {
         connectDB();
         get_staff(handle_url());
@@ -160,5 +189,5 @@
         connectDB();
         delete_staff(handle_url());
         disconnectDB();
-    }
+    } */
 ?>
